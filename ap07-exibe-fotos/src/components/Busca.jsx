@@ -13,9 +13,14 @@ export default class Busca extends React.Component{
         //console.log(evento.target.value)
         this.setState({termoDeBusca: evento.target.value})
     }
-    render() {
+    onFormSubmit = (evento) => {
+        evento.preventDefault()
+        this.props.onBuscaRealizada(this.state.termoDeBusca)
+    }
+    render() {     //flex flex-column troca o eixo para vertical (horizontal é padrão em web)
         return (
-            <div className="flex flex-column"> 
+            <form onSubmit={this.onFormSubmit}>
+                <div className="flex flex-column">
                 <IconField 
                     iconPosition='left'
                     className='w-full'>
@@ -29,7 +34,9 @@ export default class Busca extends React.Component{
                 <Button 
                 label='OK'
                 className='mt-2'/>
-            </div> //flex flex-column troca o eixo para vertical (horizontal é padrão em web)
+                </div> 
+            </form>
+
         )
     }
 }
